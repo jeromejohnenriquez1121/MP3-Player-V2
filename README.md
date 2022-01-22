@@ -1,4 +1,11 @@
-# SJ2-C Development Environment
+# CMPE146-MP3Project
+
+At the end of the semester, San Jose State University (SJSU) Computer Engineering course 146 - Embedded System Co-Design has a project where students utilize making their own SPI, UART, and GPIO drivers for their MP3 player. This is an updated version of the previous project.
+
+
+----
+
+## SJ2-C Development Environment
 
 An `SJ2` board is used at San Jose State University (SJSU) to teach Embedded Systems' courses. Part of this Git repository also includes development environment for not just an ARM controller, but also support to compile and test software on your host machine such as Windows, Mac etc.
 
