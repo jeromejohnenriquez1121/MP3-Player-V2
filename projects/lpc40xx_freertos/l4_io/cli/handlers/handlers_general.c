@@ -1,9 +1,14 @@
 #include "cli_handlers.h"
 
 #include "FreeRTOS.h"
+#include "queue.h"
 #include "task.h"
 
 #include "uart_printf.h"
+
+#include <stdio.h>
+
+extern QueueHandle_t name_queue;
 
 static void cli__task_list_print(sl_string_s user_input_minus_command_name,
                                  app_cli__print_string_function cli_output);
@@ -44,6 +49,21 @@ app_cli_status_e cli__task_list(app_cli__argument_t argument,
 
   return APP_CLI_STATUS__SUCCESS;
 }
+
+/* -------------------- Custom CLI function -------------------- */
+
+app_cli_status_e cli__play(app_cli__argument_t argument,
+                           sl_string_s user_input_minus_command_name,
+                           app_cli__print_string_function cli_output) {
+
+  sl_string__erase_first_word(user_input_minus_command_name, ' ');
+  xQueueSend(name_queue, user_input_minus_command_name.cstring, 0);
+  printf("Sent %s to queue.\n", user_input_minus_command_name.cstring);
+
+  return APP_CLI_STATUS__SUCCESS;
+}
+
+/* -------------------------------------------------------------- */
 
 static void cli__task_list_print(sl_string_s output_string,
                                  app_cli__print_string_function cli_output) {
