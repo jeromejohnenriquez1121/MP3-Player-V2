@@ -10,6 +10,7 @@
 #include "sj2_cli.h"
 
 #include "mp3_reader.h"
+#include "mp3_player.h"
 
 QueueHandle_t name_queue;
 QueueHandle_t data_queue;
@@ -22,10 +23,12 @@ int main(void) {
 
   xTaskCreate(mp3_reader__reader_task, "Read mp3 file", 4096 / sizeof(void *),
               NULL, PRIORITY_LOW, NULL);
+  xTaskCreate(mp3_player__player_task, "Read mp3 file", 4096 / sizeof(void *),
+              NULL, PRIORITY_HIGH, NULL);
 
   vTaskStartScheduler();
 
-  return 1;
+  return 1; //Should never return
 }
 
 static void initialize_queues(void) {
