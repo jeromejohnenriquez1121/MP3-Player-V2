@@ -133,3 +133,7 @@ This is for sources that perform input-output, such as a CLI handler. You should
 ### `l5_application`
 
 This is mainly for task level code.
+
+### `mp3_player`
+
+This contains all the code for the mp3 player.
